@@ -3,7 +3,9 @@
 <h1>Listing Tasks</h1>
 
 <%= form_tag(:action=>"search") do %>
-  <%= text_field_tag "search[name]", @search_value %>
+  <%= collection_select "search", "user", User.all, :id, :username, {include_blank: "全員", selected: @search_user} %>
+  <%= collection_select "search", "category", Category.all, :id, :categoryname, {include_blank: "全カテゴリー", selected: @search_category} %>
+  <%= text_field_tag "search[name]", @search_name %>
   <%= submit_tag "検索" %>
   <%= link_to "リセット", tasks_path %>
 <% end %>
