@@ -14,7 +14,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = Task.new(user_id: session[:usr])
   end
 
   # GET /tasks/1/edit
