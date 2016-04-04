@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :auth
 
   # GET /users
   # GET /users.json
@@ -70,5 +71,13 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:userid, :username, :password)
+    end
+
+    def auth
+      name = 'izumo'
+      passwd = 'syogyo'
+      authenticate_or_request_with_http_basic('ToDoList') do |n, p|
+        n == name && p == passwd
+      end
     end
 end
